@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+latexmk -pdf -pvc d9.5.tex
