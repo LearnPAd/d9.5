@@ -4,6 +4,8 @@
 %%% Andrea Polini <andrea.polini@unicam.it>
 
 \documentclass{learnpad}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{verbatim}
 
 %%% ------------------------------------------------------
@@ -95,6 +97,7 @@ software applications.}
   \historyitem{0.2}{ToC}{Jean Simard}
   \historyitem{1.0}{Write the Introduction}{Jean Simard}
   \historyitem{1.1}{Add Flow view and Component View}{Jean Simard}
+  \historyitem{1.2}{Remove sections}{Jean Simard}
 \end{history}
 
 %%% ------------------------------------------------------
@@ -165,26 +168,11 @@ process-driven learning and fosters cooperation and knowledge-sharing.
 	\item automatic model-driven simulation-based learning and testing
 \end{enumerate}
 
-\chapter{Public Administration is already using it}
-\label{ch:sota}
-State-of-the-art about existing technologies on these topics.
-Half a page/a page.
-
-\chapter{Needed features for adoption in Public Administration}
-\label{ch:problematic}
-What are the problems of existing tools and what Learn PAd is trying to address.
-\begin{itemize}
-	\item new-comers
-	\item learning of processes
-	\item centralization of the documentation
-	\item continuous and collaborative maintenance of the knowledge
-\end{itemize}
-
 \chapter{Learn PAd platform: solutions and technologies}
 \label{ch:platform}
 In order to present the platform, we'll go through 2 different kind of views: a
 logical one and a technical view.  The logical view will show the flow of what
-\learnpad platform is doing (see Section~\ref{sec:flow-view}.  The technical
+\learnpad platform is doing (see Section~\ref{sec:flow-view}).  The technical
 view will present what are the components of the \learnpad platform and how they
 connect to each other.
 
@@ -437,7 +425,45 @@ Servant for a throrough review of each of these.
 
 \chapter{Partners}
 \label{ch:partners}
-List of partners with a small paragraph that explain domain of expertise.
+
+\paragraph{Consiglio Nazionale delle Ricerche}
+Leading partner of the \learnpad project, CNR is the Italian Public Research
+Institute.  It's in charge of different domains.  It's taking care of the
+automatic semantic analysis (for the Content Analysis component) and of the 
+
+\paragraph{BOC Asset Management GmbH}
+Based in Austria, it's a leading company in Modeling.  It's providing the
+software Adoxx for the Modeling Environment component.
+
+\paragraph{Linagora Grand Sud Ouest SA}
+Linagora is an open-source company, based in France.  It's providing
+technologies and knowledge about execution and simulation of Business Processes.
+
+\paragraph{No Magic Europe UAB}
+Based in Lithuania, it's a leading company in Modeling.  It's providing the
+software MagicDraw for the Modeling Environment component.
+
+\paragraph{Regione Marche}
+Italian Public Administration of the Marche region, it's providing expertise on
+processes in Public Administration.
+
+\paragraph{Fachhochschule Nordwestschweiz}
+Swiss University with expertise on ontologies.  It's working on the
+recommendation engine.
+
+\paragraph{Università degli Studi di Camerino}
+This Italian University is having expertise in Business Process.  It's working
+on formal verification of processes.
+
+\paragraph{Università degli Studi dell'Aquila}
+This Italian University is having expertise in models (transformations,
+comparisons, historic, etc.) and in the related technologies (EMF, ATL, Acceleo,
+EMFCompare, etc.).
+
+\paragraph{XWiki SAS}
+French open-source company, which is developing XWiki software.  It's providing
+XWiki as the base of the \learnpad platform and expertise about collaboration
+and knowledge management.
 
 % ---------------------------------- Start with annexes here!
 % ----------------------------------
