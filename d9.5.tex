@@ -57,7 +57,7 @@ Jean Simard (XWIKI)
 \disseminationlevelpublic
 % \disseminationlevelconfidential
 %%% ------------------------------------------------------
-\version{2.0}%
+\version{2.1}%
 \contractualdeliverydate{24 January 2016}%
 \actualdeliverydate{24 January 2016}%
 \contributingwp{WP9}%
@@ -82,7 +82,7 @@ software applications.}
 %%% ------------------------------------------------------
 \reviewoutline{2 Dec. 2015}{0.2}{}{}
 \reviewdraft{27 Dec. 2015}{1.2}{}{}
-\reviewinternal{10 Jan. 2016}{2.0}{Andrea Polini, Antonia Bertolino}{}
+\reviewinternal{10 Jan. 2016}{2.1}{Andrea Polini, Antonia Bertolino}{}
 \reviewcandidatefinal{24 Jan. 2016}{3.0}{Antonia Bertolino}{}
 
 \begin{document}
@@ -100,6 +100,7 @@ software applications.}
   \historyitem{1.1}{Add Flow view and Component View}{Jean Simard}
   \historyitem{1.2}{Remove sections}{Jean Simard}
   \historyitem{2.0}{Improve after a review from XWiki}{Jean Simard}
+  \historyitem{2.1}{Improve after a review from NME}{Jean Simard}
 \end{history}
 
 %%% ------------------------------------------------------
@@ -168,9 +169,25 @@ process-driven learning and fosters cooperation and knowledge-sharing.
 \learnpad technical innovation is based on four pillars:
 \begin{enumerate}
 	\item a new concept of model-based e-learning (both process and knowledge)
+		\begin{quote}
+			Learning of processes by Civil Servants is driven by a very
+			structured information: models
+		\end{quote}
 	\item open and collaborative e-learning content management
+		\begin{quote}
+			Learning should be based on open data and everybody can participate
+			to improve these data
+		\end{quote}
 	\item automatic, learner-specific and collaborative content quality assessment
+		\begin{quote}
+			Every new content is verified by automatic systems and also by other
+			Civil Servants, collaboratively
+		\end{quote}
 	\item automatic model-driven simulation-based learning and testing
+		\begin{quote}
+			Civil Servants can run a process in a risk-free simulation in order
+			to learn and be evaluated on their new knowledge
+		\end{quote}
 \end{enumerate}
 
 \section{Who will benefit \learnpad?}
@@ -208,9 +225,9 @@ the models are designed.  Then they are verified by the Model Verification
 component [2] before being transformed by the Transformations component [3] in
 different kinds of representations:
 \begin{itemize}
-	\item wiki pages for the Collaborative Workspace component [4]
-	\item ontologies for the Ontology Recommender component [5]
-	\item Business Process BPMN 2.0 files for the Simulation Environment
+	\item Wiki pages for the Collaborative Workspace component [4]
+	\item Ontologies for the Ontology Recommender component [5]
+	\item Business Process files for the Simulation Environment
 		component [6]
 \end{itemize}
 Eventually, Collaborative Workspace is checking the content co-created by Civil
@@ -237,16 +254,17 @@ components.
 Adoxx, MagicDraw
 
 \paragraph{Description}
-In the Modeling Environment, the
-Modeler is describing and documenting the models.  Any modeling tool could be
-plugged on the \learnpad platform as long as its providing the correct output
-format.
+In the Modeling Environment component, the Modeler is describing and documenting
+the models.  Any modeling tool could be plugged on the \learnpad platform as
+long as its providing the correct output format.
 
 The output format contains a few things:
 \begin{itemize}
-	\item A set of models which are woven together
-	\item Clickable images of the models (images and maps)
-	\item Business Process models as one BPMN (standard format) file
+	\item A set of models which are woven together\footnote{Business Process
+		Models, Case Management Models and Notations, Document and Knowledge
+		Models, Organization Models, Competency Models, Business Motivation
+		Models, KPI Models}
+	\item Clickable images of the models (images and maps of clickable areas)
 \end{itemize}
 
 \subsection{Model Verification}
@@ -271,18 +289,18 @@ EMF, ATL, Acceleo, XSL-T
 Once the model has been validated, it can be imported into the \learnpad
 platform.  3 components will need these models for different purposes.
 
-First of all, the Collaborative Workspace will display these models into a wiki
-for the Civil Servants.  These transformations are done using Modeling
-Transformations tools like EMF (to represent models), ATL (to convert models)
-and Acceleo (to serialize EMF representations of models).
+First of all, the Collaborative Workspace component will display these models
+into a wiki for the Civil Servants.  These transformations are done using
+Modeling Transformations tools like EMF (to represent models), ATL (to convert
+models) and Acceleo (to serialize EMF representations of models).
 
-On the second hand, the Ontology Recommender has to build an ontology of the
-models in order to propose recommendations.  The transformations technology used
-here is XML-specific: XSL-Transformations.
+On the second hand, the Ontology Recommender component has to build an ontology
+of the models in order to propose recommendations.  The transformations
+technology used here is XML-specific: XSL-Transformations.
 
-Finally, the Simulator will simulate Business Process.  It's using the Activiti
-Engine which is able to run simulation on Business Process serialized as BPMN
-standard format.
+Finally, the Simulation Environment component will simulate Business Process.
+It's using the Activiti Engine which is able to run simulation on Business
+Process serialized as BPMN standard format.
 
 \subsection{Collaborative Workspace}
 \label{sec:collaborative-workspace}
@@ -291,9 +309,9 @@ standard format.
 Wiki
 
 \paragraph{Description}
-The Collaborative Workspace is the User Interface entry point for Civil
-Servants.  It's in the Collaborative Workspace they will consult, browse, learn
-about new or existing processes.
+The Collaborative Workspace component is the User Interface entry point for
+Civil Servants.  It's in the Collaborative Workspace component they will
+consult, browse, learn about new or existing processes.
 
 Civil Servants are able to collaborate into this workspace by providing
 additionnal documentation, help to fix inconsistent, incomplete or wrong models
@@ -305,10 +323,10 @@ additionnal documentation, help to fix inconsistent, incomplete or wrong models
 ArchiMate, ArchiMEO, RDF
 
 \paragraph{Description}
-The Ontology Recommender will create an ontology based on the models that are
-pushed to him.  This ontology will produce different kind of recommendations to
-the Civil Servant as they browse the wiki and use the simulation (see
-Section~\ref{sec:simulator}:
+The Ontology Recommender component will create an ontology based on the models
+that are pushed to him.  This ontology will produce different kind of
+recommendations to the Civil Servant as they browse the wiki and use the
+simulation (see Section~\ref{sec:simulator}:
 \begin{itemize}
 	\item \emph{Experts} they could talk to to get more details on the activity
 	\item \emph{Similar Cases} which are similar processes to the one currently
@@ -317,18 +335,19 @@ Section~\ref{sec:simulator}:
 		multimedias that can help to understand the activity
 \end{itemize}
 
-\subsection{Simulator}
+\subsection{Simulation Environment}
 \label{sec:simulator}
 
 \paragraph{Technology}
 Activiti, BPMN
 
 \paragraph{Description}
-On the Simulator, Civil Servants will be able to interactively simulate a
-process, playing each activity of it and validate each step.  It's a learning
-tool so the Simulator will give feedback about the expected values.  Multiple
-Civil Servants may interact on a common simulation too.  In any case,
-gamification mechanisms will keep this exercise motivating for Civil Servants.
+On the Simulation Environment component, Civil Servants will be able to
+interactively simulate a process, playing each activity and validate each step.
+It's a learning tool so the Simulation Environment component will give feedback
+about the expected values.  Multiple Civil Servants may interact on a common
+simulation too.  In any case, gamification mechanisms will keep this exercise
+motivating for Civil Servants.
 
 \subsection{Content Analysis}
 \label{sec:content-analysis}
@@ -337,12 +356,12 @@ gamification mechanisms will keep this exercise motivating for Civil Servants.
 Gate
 
 \paragraph{Description}
-In the Collaborative Workspace, the Civil Servants will be able to co-edit new
-documents that will complete the processes' documentation.  These documents will
-be beneficial for every other Civil Servant.  Therefore, Content Analysis is in
-charge of keeping a minimum level of quality for these documents.  It will run
-semantic analysis on the produced documents in order to spot vagueness or
-incomplete information in the texts.
+In the Collaborative Workspace component, the Civil Servants will be able to
+co-edit new documents that will improve the processes' documentation.  These
+documents will be beneficial for every other Civil Servant.  Therefore, Content
+Analysis component is in charge of keeping a minimum level of quality for these
+documents.  It will run semantic analysis on the produced documents in order to
+spot vagueness or incomplete information in the contents.
 
 \section{Component view}
 \label{sec:component-view}
@@ -359,85 +378,87 @@ Figure~\ref{fig:component-view}).
 
 \subsection{Learn PAd Core}
 \learnpad platform has been designed as modular as possible.  Everything is
-plugged onto this \learnpad Core.  In order to be independent as much as
-possible from the technologies used in each component, each component is
-communicating with the \learnpad Core with REST APIs.
+plugged onto this \learnpad Core component.  In order to be independent as much
+as possible from the technologies used in each component, each component is
+communicating with the \learnpad Core component with REST APIs.
 
 This component is developed inside the XWiki software.  This means that storage
 is shared with all components that are part of XWiki.  However, it communicates
 with all the components with REST which make it a replaceable component.
 
 \subsection{Modeling Environment}
-This component is not part of \learnpad platform.  \learnpad platform is a
-server providing a list of features and services: it's always on.  However, the
-Modeling Environment could be desktop application that is launched, used, then
-stopped.  It a necessary component to the \learnpad flow but it's not always on.
-That's the reason why its talking to \learnpad Core Platform but never the other
-way around.
+Modeling Environment component is a specific component.  It's used for modeling
+but once used, it can be shutdown.  However, the \learnpad Core component is
+assumed to be always online.  Therefore, communication between these two
+components are always a one way communication: the Modeling Environment
+component send or ask information to the \learnpad Core component.
 
-The format they will push toward the \learnpad platform is a ZIP archive, called \verb+lpzip+ which contains:
+The format Modeling Environment component is pushing toward the \learnpad
+platform is a ZIP archive (files \verb+*.lpzip+) which contains:
 \begin{itemize}
 	\item Set of models [format:XML/Adoxx or XML/MagicDraw]
 	\item Images [format: BMP, JPG, PNG, SVG]
 	\item Images map [format:HTML-Map]
-	\item Business Process models [format:BPMN2.0]
+	\item Business Process models [format:BPMN 2.0]
 \end{itemize}
 
 \subsection{Collaborative Workspace}
 The Collaborative Workspace is divided into 2 main components.  Since the
-\learnpad Core is not doing any transformation on the files (\learnpad Core is
-more like a router), the Collaborative Workspace is getting raw files.
-Therefore, the Wiki component is getting raw models from the \learnpad Core,
-then use a EMF Transformation component to transform models into wiki pages,
-before importing them.
+\learnpad Core component is not doing any transformation on the files (\learnpad
+Core component is more like a router), the Collaborative Workspace component is
+getting raw files.  Therefore, the Wiki component is downloading the raw files
+from the \learnpad Core component, then use an EMF Transformation component to
+transform models into wiki pages.
 
 \subsubsection{Wiki}
-The Wiki component is the most important part of the Collaborative Workspace.
-It's the Graphical User Interface for Civil Servants where models will be
-displayed.  It contains modeling data, stored with a generic format, and an
-application capable of displaying these datas.
+The Wiki component is the most important part of the Collaborative Workspace
+component.  It's the Graphical User Interface for Civil Servants where models
+will be displayed.  It contains modeling data, stored with a generic format, and
+an application capable of displaying these datas.
 
 Wiki component will get models, ask for transformation, and import the resulting
 wiki pages from the transformation.
 
 \subsubsection{EMF Transformation}
 This transformation module is using EMF technologies to operate transformations
-on models.  Each meta-model is represented as an Ecore module (Adoxx, MagicDraw,
-XWiki).  Then, a transformation language, ATL, transform them from an Ecore A
+on models.  Each meta-model (Adoxx, MagicDraw, XWiki) is represented as an Ecore
+module.  Then, a transformation language, ATL, transform them from an Ecore A
 (Adoxx or MagicDraw) to an Ecore B (XWiki).  Finally, Acceleo is serializing the
-Ecore to wiki pages which are returned to the Wiki.
+Ecore to wiki pages which are sent to the Wiki component.
 
 \subsection{Ontology Recommender}
-For the same reasons than the Collaborative Workspace, the Ontology Recommender
-is getting raw files from \learnpad Core.  Therefore, the main component
-Recommender is getting these files, sending them to the XSL-T Transformations
-component which return back ontologies of the models.
+For the same reasons than the Collaborative Workspace component, the Ontology
+Recommender component is getting raw files from \learnpad Core.  Therefore, the
+Recommender component is getting these files, sending them to the XSL-T
+Transformations component which return back ontologies of the models.
 
 \subsubsection{Recommender}
 The Recommender component is using an ontology to organize the information of
 the models.  The ontology is expressed as a RDF format.  This component will be
-able to make recommendations to a Civil Servants as he browse a model or play a
+able to make recommendations to a Civil Servants as he browses a model or play a
 simulation.  Contextual information will be used to get the best possible
 recommendations, for example:
 \begin{itemize}
 	\item Who is the current Civil Servant?
-	\item What is the Civil Servant is currently looking at?
-	\item In case of simulation, what are the data already filled by the Civil
+	\item What the Civil Servant is currently looking at?
+	\item In case of simulation, what are the data already entered by the Civil
 		Servant?
 \end{itemize}
 
 \subsubsection{XSL-T Transformations}
 This component is transforming models into ontologies.  The technology used is
-XML specific, and very efficient as parsing XML files to transform them into
+XML specific, and very efficient at parsing XML files to transform them into
 other serialization, RDF ontologies in this case.
 
-\subsection{Simulator}
-The Simulator is using Activiti Engine to play simulations of Business
-Processes.  Activiti Engine is using BPMN standard format which are already
-stored in the \learnpad Core.
+\subsection{Simulation Environment}
+The Simulation Environment component is using Activiti Engine to play
+simulations of Business Processes.  Activiti Engine is using BPMN 2.0 format
+which was sent by the Modeling Environment component and stored in the \learnpad
+Core.
 
-The Simulator component is also generating Graphical User Interface for the
-Civil Servant.  However, these GUI are embedded inside the Wiki for 2 reasons:
+The Simulation Environment component is also generating Graphical User Interface
+for the Civil Servant.  However, this GUI are embedded inside the Wiki for 2
+reasons:
 \begin{itemize}
 	\item Reduce the number of entry points for the Civil Servants
 	\item Display recommendations during the simulation (UI for recommendation
@@ -445,22 +466,22 @@ Civil Servant.  However, these GUI are embedded inside the Wiki for 2 reasons:
 \end{itemize}
 
 \subsection{Model Verification}
-The Model Verification is in charge of verifying consistency of models.  It 
-runs multiple tests on models in order to identify different kind of errors.  The
-Modeling Environment is able to ask \learnpad Core for these errors in order to
-show them to the modelers.
+The Model Verification component is in charge of verifying consistency of
+models.  It runs multiple tests on models in order to identify different kind of
+errors.  The Modeling Environment component is able to ask \learnpad Core
+component for errors and report them to the modelers.
 
 \subsection{Content Analysis}
-The Content Analysis runs semantic analysis on free text collaboratively created
-by Civil Servants in the Wiki.  It returns annotations on the text with the
-following information:
+The Content Analysis component runs semantic analysis on free text
+collaboratively created by Civil Servants in the Wiki component.  It returns
+annotations on the text with the following information:
 \begin{itemize}
 	\item Start and End of the piece of concerned text
 	\item The type of error (among a list of categories)
 \end{itemize}
 
-The annotations are then displayed in the Wiki, providing a workflow to a Civil
-Servant for a throrough review of each of these.
+The annotations are then displayed in the Wiki component, providing a workflow
+to a Civil Servant for a throrough review of each of these.
 
 \chapter{About partners}
 \label{ch:partners}
