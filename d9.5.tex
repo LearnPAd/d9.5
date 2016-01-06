@@ -7,6 +7,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{verbatim}
+\usepackage[english]{isodate}
 
 %%% ------------------------------------------------------
 %%% ---------------- The Title
@@ -56,7 +57,7 @@ Jean Simard (XWIKI)
 \disseminationlevelpublic
 % \disseminationlevelconfidential
 %%% ------------------------------------------------------
-\version{0.2}%
+\version{2.0}%
 \contractualdeliverydate{24 January 2016}%
 \actualdeliverydate{24 January 2016}%
 \contributingwp{WP9}%
@@ -80,7 +81,7 @@ software applications.}
 %%% ---------------- review table
 %%% ------------------------------------------------------
 \reviewoutline{2 Dec. 2015}{0.2}{}{}
-\reviewdraft{27 Dec. 2015}{1.0}{}{}
+\reviewdraft{27 Dec. 2015}{1.2}{}{}
 \reviewinternal{10 Jan. 2016}{2.0}{Andrea Polini, Antonia Bertolino}{}
 \reviewcandidatefinal{24 Jan. 2016}{3.0}{Antonia Bertolino}{}
 
@@ -98,6 +99,7 @@ software applications.}
   \historyitem{1.0}{Write the Introduction}{Jean Simard}
   \historyitem{1.1}{Add Flow view and Component View}{Jean Simard}
   \historyitem{1.2}{Remove sections}{Jean Simard}
+  \historyitem{2.0}{Improve after a review from XWiki}{Jean Simard}
 \end{history}
 
 %%% ------------------------------------------------------
@@ -150,6 +152,8 @@ software applications.}
 
 \chapter{E-Learning and Knowledge Management of processes in Public Administration}
 \label{ch:intro}
+
+\section{Why \learnpad?}
 In modern society public administrations (PAs) are undergoing a transformation
 of their perceived role from controllers to proactive service providers, and are
 under pressure to constantly improve their service quality while coping with
@@ -158,6 +162,7 @@ globalization, fast technology evolution) and decreasing budgets.  Civil
 servants are challenged to understand and put in action latest procedures and
 rules within tight time constraints.
 
+\section{What is \learnpad?}
 \learnpad is an innovative holistic e-learning platform for PAs that enables
 process-driven learning and fosters cooperation and knowledge-sharing.
 \learnpad technical innovation is based on four pillars:
@@ -168,24 +173,58 @@ process-driven learning and fosters cooperation and knowledge-sharing.
 	\item automatic model-driven simulation-based learning and testing
 \end{enumerate}
 
+\section{Who will benefit \learnpad?}
+\learnpad is designed with and for the Public Administration.  Civil Servants
+from these Public Administrations implements processes everyday: they must be
+aware of any evolution or any new process.
+
+\section{When will \learnpad exist?}
+\learnpad is a European Union funded project and started on
+\origdate\printdate{01/02/2014}.  It's a two and half years long project so it
+will end on \printdate{31/08/2016}.  In the meantime, a first prototype has been
+evaluated by Regione Marche Administration (Italy) on \printdate{10/11/2015}.  A
+second release of the platform will be release on \printdate{15/04/2016}.
+
+\section{What is in this white paper?}
+This white paper will present the technical solutions that have been merged
+together to meet the requirements of this \learnpad platform.  In the next
+section, you'll meet with the \learnpad platform.  In the last section, you'll
+meet the partners that participate in the elaboration of this \learnpad
+platform.
+
 \chapter{Learn PAd platform: solutions and technologies}
 \label{ch:platform}
-In order to present the platform, we'll go through 2 different kind of views: a
-logical one and a technical view.  The logical view will show the flow of what
-\learnpad platform is doing (see Section~\ref{sec:flow-view}).  The technical
-view will present what are the components of the \learnpad platform and how they
-connect to each other.
+This section will present the \learnpad platform through two different points of
+view: a logical view and a technical view.  The logical view present the usage
+of the platform in a typical scenario (see Section~\ref{sec:flow-view}).  The
+technical view present the components of the  platform and how they connect to
+each other.
 
-\section{Flow view}
+\section{Logical view}
 \label{sec:flow-view}
-To present \learnpad platform, let's start with a simplified view of the flow of
-the \learnpad platform with Figure~\ref{fig:flow-view}.
+The Figure~\ref{fig:flow-view} show the global workflow happening inside the
+\learnpad platform.  The Modeling Environment component [1] is the place where
+the models are designed.  Then they are verified by the Model Verification
+component [2] before being transformed by the Transformations component [3] in
+different kinds of representations:
+\begin{itemize}
+	\item wiki pages for the Collaborative Workspace component [4]
+	\item ontologies for the Ontology Recommender component [5]
+	\item Business Process BPMN 2.0 files for the Simulation Environment
+		component [6]
+\end{itemize}
+Eventually, Collaborative Workspace is checking the content co-created by Civil
+Servants by sending them to the Content Analysis component [7].
+
+In the following section, you'll find a more detailed description of all the
+components.
 
 \begin{figure}[!htp]
 	\centering
 	\includegraphics[width=.6\paperwidth,keepaspectratio]{figures/learnpad-flow.jpg}
 	\caption{Flow view of the \learnpad platform\newline
 	TODO: draw a line between transformation and Simulator to transfer Business Process then remove the one between CW and SIM\newline
+	TODO: Change name of Simulator to Simulation Environment\newline
 	TODO: Remove the number (2) and update other numbers accordingly\newline
 	TODO: Remove the number (8) and update other numbers accordingly}
 	\label{fig:flow-view}
@@ -198,12 +237,12 @@ the \learnpad platform with Figure~\ref{fig:flow-view}.
 Adoxx, MagicDraw
 
 \paragraph{Description}
-This is the first entry point of the platform.  In the Modeling Environment, the
+In the Modeling Environment, the
 Modeler is describing and documenting the models.  Any modeling tool could be
-plugged on the \learnpad platform as long as its providing the correct input
+plugged on the \learnpad platform as long as its providing the correct output
 format.
 
-The input format contains a few things:
+The output format contains a few things:
 \begin{itemize}
 	\item A set of models which are woven together
 	\item Clickable images of the models (images and maps)
@@ -423,47 +462,101 @@ following information:
 The annotations are then displayed in the Wiki, providing a workflow to a Civil
 Servant for a throrough review of each of these.
 
-\chapter{Partners}
+\chapter{About partners}
 \label{ch:partners}
 
-\paragraph{Consiglio Nazionale delle Ricerche}
-Leading partner of the \learnpad project, CNR is the Italian Public Research
-Institute.  It's in charge of different domains.  It's taking care of the
-automatic semantic analysis (for the Content Analysis component) and of the 
+\section{Consiglio Nazionale delle Ricerche}
+Leading partner of the \learnpad project, CNR is an Italian Public Research
+Institute.  It's the expert in automatic semantic analysis (for the Content
+Analysis component).
 
-\paragraph{BOC Asset Management GmbH}
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/cnr.png}\par
+	\url{http://www.cnr.it}
+\end{figure}
+
+\section{BOC Asset Management GmbH}
 Based in Austria, it's a leading company in Modeling.  It's providing the
 software Adoxx for the Modeling Environment component.
 
-\paragraph{Linagora Grand Sud Ouest SA}
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/boc-group.png}\par
+	\url{http://www.boc-group.com}
+\end{figure}
+
+\section{Linagora Grand Sud Ouest SA}
 Linagora is an open-source company, based in France.  It's providing
 technologies and knowledge about execution and simulation of Business Processes.
 
-\paragraph{No Magic Europe UAB}
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/linagora.png}\par
+	\url{http://www.linagora.com}
+\end{figure}
+
+\section{No Magic Europe UAB}
 Based in Lithuania, it's a leading company in Modeling.  It's providing the
 software MagicDraw for the Modeling Environment component.
 
-\paragraph{Regione Marche}
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/nme.png}\par
+	\url{http://www.nomagic.com}
+\end{figure}
+
+\section{Regione Marche}
 Italian Public Administration of the Marche region, it's providing expertise on
 processes in Public Administration.
 
-\paragraph{Fachhochschule Nordwestschweiz}
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/marche.jpg}\par
+	\url{http://www.regione.marche.it}
+\end{figure}
+
+\section{Fachhochschule Nordwestschweiz}
 Swiss University with expertise on ontologies.  It's working on the
 recommendation engine.
 
-\paragraph{Università degli Studi di Camerino}
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/fhnw.jpg}\par
+	\url{http://www.fhnw.ch}
+\end{figure}
+
+\section{Università degli Studi di Camerino}
 This Italian University is having expertise in Business Process.  It's working
 on formal verification of processes.
 
-\paragraph{Università degli Studi dell'Aquila}
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/unicam.png}\par
+	\url{http://www.unicam.it}
+\end{figure}
+
+\section{Università degli Studi dell'Aquila}
 This Italian University is having expertise in models (transformations,
 comparisons, historic, etc.) and in the related technologies (EMF, ATL, Acceleo,
 EMFCompare, etc.).
 
-\paragraph{XWiki SAS}
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/univaq.png}\par
+	\url{http://www.univaq.it}
+\end{figure}
+
+\section{XWiki SAS}
 French open-source company, which is developing XWiki software.  It's providing
 XWiki as the base of the \learnpad platform and expertise about collaboration
 and knowledge management.
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/xwiki.png}\par
+	\url{http://www.xwiki.com}
+\end{figure}
 
 % ---------------------------------- Start with annexes here!
 % ----------------------------------
