@@ -57,7 +57,7 @@ Jean Simard (XWIKI)
 \disseminationlevelpublic
 % \disseminationlevelconfidential
 %%% ------------------------------------------------------
-\version{2.1}%
+\version{2.2}%
 \contractualdeliverydate{24 January 2016}%
 \actualdeliverydate{24 January 2016}%
 \contributingwp{WP9}%
@@ -82,7 +82,7 @@ software applications.}
 %%% ------------------------------------------------------
 \reviewoutline{2 Dec. 2015}{0.2}{}{}
 \reviewdraft{27 Dec. 2015}{1.2}{}{}
-\reviewinternal{10 Jan. 2016}{2.1}{Andrea Polini, Antonia Bertolino}{}
+\reviewinternal{10 Jan. 2016}{2.2}{Andrea Polini, Antonia Bertolino}{}
 \reviewcandidatefinal{24 Jan. 2016}{3.0}{Antonia Bertolino}{}
 
 \begin{document}
@@ -101,6 +101,7 @@ software applications.}
   \historyitem{1.2}{Remove sections}{Jean Simard}
   \historyitem{2.0}{Improve after a review from XWiki}{Jean Simard}
   \historyitem{2.1}{Improve after a review from NME}{Jean Simard}
+  \historyitem{2.2}{Add graphics}{Jean Simard}
 \end{history}
 
 %%% ------------------------------------------------------
@@ -220,30 +221,32 @@ each other.
 \section{Logical view}
 \label{sec:flow-view}
 The Figure~\ref{fig:flow-view} show the global workflow happening inside the
-\learnpad platform.  The Modeling Environment component [1] is the place where
+\learnpad platform.  The Modeling Environment component
+\includegraphics[height=1.5ex,keepaspectratio]{figures/1.png} is the place where
 the models are designed.  Then they are verified by the Model Verification
-component [2] before being transformed by the Transformations component [3] in
-different kinds of representations:
+component \includegraphics[height=1.5ex,keepaspectratio]{figures/2.png} before
+being transformed by the Transformations component
+\includegraphics[height=1.5ex,keepaspectratio]{figures/3.png} in different kinds
+of representations:
 \begin{itemize}
-	\item Wiki pages for the Collaborative Workspace component [4]
-	\item Ontologies for the Ontology Recommender component [5]
-	\item Business Process files for the Simulation Environment
-		component [6]
+	\item Wiki pages for the Collaborative Workspace component
+		\includegraphics[height=1.5ex,keepaspectratio]{figures/4.png}
+	\item Ontologies for the Ontology Recommender component
+		\includegraphics[height=1.5ex,keepaspectratio]{figures/5.png}
+	\item Business Process files for the Simulation Environment component
+		\includegraphics[height=1.5ex,keepaspectratio]{figures/6.png}
 \end{itemize}
 Eventually, Collaborative Workspace is checking the content co-created by Civil
-Servants by sending them to the Content Analysis component [7].
+Servants by sending them to the Content Analysis component
+\includegraphics[height=1.5ex,keepaspectratio]{figures/7.png}.
 
 In the following section, you'll find a more detailed description of all the
 components.
 
 \begin{figure}[!htp]
 	\centering
-	\includegraphics[width=.6\paperwidth,keepaspectratio]{figures/learnpad-flow.jpg}
-	\caption{Flow view of the \learnpad platform\newline
-	TODO: draw a line between transformation and Simulator to transfer Business Process then remove the one between CW and SIM\newline
-	TODO: Change name of Simulator to Simulation Environment\newline
-	TODO: Remove the number (2) and update other numbers accordingly\newline
-	TODO: Remove the number (8) and update other numbers accordingly}
+	\includegraphics[width=.6\paperwidth,keepaspectratio]{figures/logical-view.png}
+	\caption{Flow view of the \learnpad platform}
 	\label{fig:flow-view}
 \end{figure}
 
@@ -371,7 +374,7 @@ Figure~\ref{fig:component-view}).
 
 \begin{figure}[!htp]
 	\centering
-	\includegraphics[width=.6\paperwidth,keepaspectratio]{figures/learnpad-architecture.jpg}
+	\includegraphics[width=.6\paperwidth,keepaspectratio]{figures/component-view.png}
 	\caption{Component view of the \learnpad platform}
 	\label{fig:component-view}
 \end{figure}
