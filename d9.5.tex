@@ -7,7 +7,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{verbatim}
-\usepackage[english]{isodate}
+\usepackage[english,orig,printdayoff,nocleanlook]{isodate}
 
 %%% ------------------------------------------------------
 %%% ---------------- The Title
@@ -57,7 +57,7 @@ Jean Simard (XWIKI)
 \disseminationlevelpublic
 % \disseminationlevelconfidential
 %%% ------------------------------------------------------
-\version{2.2}%
+\version{2.3}%
 \contractualdeliverydate{24 January 2016}%
 \actualdeliverydate{24 January 2016}%
 \contributingwp{WP9}%
@@ -66,11 +66,13 @@ Jean Simard (XWIKI)
 %%% ---------------- abstract
 %%% ------------------------------------------------------
 
-\abstract{Provides a technology oriented overview of Learn PAd that is targeted
-to readers from research and software vendor communities with a goal to build
-interest in adopting Learn PAd concepts in further research and integrating
-technological components in external e-learning, modelling and middleware
-software applications.}
+\abstract{In this white paper, you'll be shown a technical overview of the
+\learnpad platform.  \learnpad platform is targeting learning of processes in
+Public Administration with innovative approach combining model-driven learning
+and collaborative learning.  This white paper will first expose the different
+functionalities of the platform through a scenario that covers a variety of use
+cases.  Then it will present the components and communications involved in order
+to orchestrate these use cases.}
 
 %%% ------------------------------------------------------
 %%% ---------------- Keywords
@@ -99,9 +101,10 @@ software applications.}
   \historyitem{1.0}{Write the Introduction}{Jean Simard}
   \historyitem{1.1}{Add Flow view and Component View}{Jean Simard}
   \historyitem{1.2}{Remove sections}{Jean Simard}
-  \historyitem{2.0}{Improve after a review from XWiki}{Jean Simard}
-  \historyitem{2.1}{Improve after a review from NME}{Jean Simard}
+  \historyitem{2.0}{Improve after a review from XWiki}{Benjamin Lanciaux, Jean Simard}
+  \historyitem{2.1}{Improve after a review from NME}{Jovaldas Januškevičius, Jean Simard}
   \historyitem{2.2}{Add graphics}{Jean Simard}
+  \historyitem{2.3}{Improve with contributions}{Francesco Basciani, Antonello Calabrò, Alessio Ferrari, Francesca Lonetti, Alfonso Pierantonio, Andrea Polini, Gianni Rosa, Darius Šilingas, Jean Simard}
 \end{history}
 
 %%% ------------------------------------------------------
@@ -198,10 +201,11 @@ aware of any evolution or any new process.
 
 \section{When will \learnpad exist?}
 \learnpad is a European Union funded project and started on
-\origdate\printdate{01/02/2014}.  It's a two and half years long project so it
-will end on \printdate{31/08/2016}.  In the meantime, a first prototype has been
+\printdate{01/02/2014}.  It's a two and half years long project so it will end
+on \printdate{31/08/2016}.  In the meantime, a first prototype has been
 evaluated by Regione Marche Administration (Italy) on \printdate{10/11/2015}.  A
-second release of the platform will be release on \printdate{15/04/2016}.
+second release of the platform will be release on \printdate{15/04/2016}.  A
+final release is expected for \printdate{31/04/2016}.
 
 \section{What is in this white paper?}
 This white paper will present the technical solutions that have been merged
@@ -210,17 +214,14 @@ section, you'll meet with the \learnpad platform.  In the last section, you'll
 meet the partners that participate in the elaboration of this \learnpad
 platform.
 
-\chapter{Learn PAd platform: solutions and technologies}
-\label{ch:platform}
-This section will present the \learnpad platform through two different points of
-view: a logical view and a technical view.  The logical view present the usage
-of the platform in a typical scenario (see Section~\ref{sec:flow-view}).  The
-technical view present the components of the  platform and how they connect to
-each other.
+\chapter{\learnpad platform: how to use it?}
+In this section, we'll provide different use cases which will give an overview
+of \learnpad Platform.  These use cases are user-driven: you'll see Modeler use
+cases and Learner use cases.  But first, let's explain what is the \learnpad
+Platform and what are the kind of users that will use this \learnpad Platform.
 
-\section{Logical view}
-\label{sec:flow-view}
-The Figure~\ref{fig:flow-view} show the global workflow happening inside the
+\section{Overview of \learnpad Platform}
+The Figure~\ref{fig:flow-view} shows the global workflow happening inside the
 \learnpad platform.  The Modeling Environment component
 \includegraphics[height=1.5ex,keepaspectratio]{figures/1.png} is the place where
 the models are designed.  Then they are verified by the Model Verification
@@ -240,9 +241,6 @@ Eventually, Collaborative Workspace is checking the content co-created by Civil
 Servants by sending them to the Content Analysis component
 \includegraphics[height=1.5ex,keepaspectratio]{figures/7.png}.
 
-In the following section, you'll find a more detailed description of all the
-components.
-
 \begin{figure}[!htp]
 	\centering
 	\includegraphics[width=.6\paperwidth,keepaspectratio]{figures/logical-view.png}
@@ -250,127 +248,198 @@ components.
 	\label{fig:flow-view}
 \end{figure}
 
-\subsection{Modeling Environment}
-\label{sec:modeling-environment}
+\section{Kind of users in \learnpad Platform}
+\learnpad platform has the goal to document processes in the Public
+Administration for Civil Servants to learn them.  It means that the first users
+of the platform will be Civil Servants: they will learn or improve their
+existing knowledge about processes.
 
-\paragraph{Technology}
-Adoxx, MagicDraw
+In the meantime, someone has to document these processes: the Modeler.  Based on
+information of an experienced Civil Servant, the Modeler will translate the
+process into models that will be injected in the \learnpad platform.
 
-\paragraph{Description}
-In the Modeling Environment component, the Modeler is describing and documenting
-the models.  Any modeling tool could be plugged on the \learnpad platform as
-long as its providing the correct output format.
+The two following sections will be about the typical use cases of a Modeler and
+of a Civil Servant, and more specifically, a Learner.
 
-The output format contains a few things:
+\section{Modeler use cases}
+\subsection{Modeling}
+The first task of the Modeler is to create and document a existing process from
+the Public Administration.  Working on a Modeling tool, he will model Business
+Processes.  But in \learnpad, the Modeler brings a lot more than Business
+Process modeling.  The Modeler will also complete Business Process model with:
+Organization Structure, Documents and Knowledge, Competencies, Case Management,
+KPI, Motivations.
+
+\paragraph{Behind the scene}
+The Modeler will work on the Modeling Environment component
+[\ref{sec:modeling-environment}].  In \learnpad, two of these components have
+been tested: Adoxx from BOC, and MagicDraw from No Magic.  Both these softwares
+have implemented specific meta-models for Business Process, Organization
+Structure, Documents and Knowledge, Competencies, Case Management, KPI,
+Motivations.  On top of that, they also include a weaving meta-model that links
+all these meta-models together.
+
+\subsection{Publishing the models}\label{sse:PublishingModels}
+Once the models has been finalized, the Modeler will publish them in order to
+make them accessible to the Learners.
+
+\paragraph{Behind the scene}
+Once the Modeler decide to publish the models, the Modeling Environment
+component [\ref{sec:modeling-environment}] will push the models toward the
+\learnpad Core Platform component [\ref{sec:core}].  The \learnpad Core Platform
+component [\ref{sec:core}] will have to check the models then import them into
+the other components (more details about these processes in the next sections).
+
+\subsection{Verification of the models}
+When the Modeler is publishing the models, the \learnpad Platform may reject
+them because of errors.  In fact, the \learnpad Platform will run a list of
+automatic verifications to check the consistency of models.
+
+\paragraph{Behind the scene}
+In the \learnpad Platform, a Model Verification component
+[\ref{sec:model-verification}] is in charge of formal verifications of the
+models.  It will provide help to the Modeler by spotting errors and providing
+warnings.  Once \learnpad Core Platform component [\ref{sec:core}] has check
+that models don't contain errors, it will pushed them towards other component of
+the \learnpad Platform, mainly Collaborative Workspace component
+[\ref{sec:collaborative-workspace}], Ontology Recommender component
+[\ref{sec:ontology-recommender}] and Simulation Environment component
+[\ref{sec:simulation-environment}] (more details on these component in the
+following sections).
+
+\subsection{Resolve feedbacks}
+Civil Servants may spot inconsistencies in the models.  In this case, they'll
+fill a feedback intended for the Modeler.  When starting his modeling tool, the
+Modeler will see these feedbacks, he will either fix them or reject them, then
+publish the new model toward the \learnpad Platform.
+
+\paragraph{Behind the scene}
+Civil Servants can fill a feedback from the Collaborative Workspace component
+[\ref{sec:collaborative-workspace}].  The Modeling Environment component
+[\ref{sec:modeling-environment}] will ask feedback to the \learnpad Core
+Platform component [\ref{sec:core}] which will gather them from the
+Collaborative Workspace component [\ref{sec:collaborative-workspace}].  Once the
+Modeler has modified and fixed the models, then the publish procedure will be
+the same as already described in Section~\ref{sse:PublishingModels}.  See also
+Section~\ref{sse:FormulateFeedbackToModeler} for how Civil Servants are creating
+feedbacks in the Collaborative Workspace component
+[\ref{sec:collaborative-workspace}].
+
+\section{Learner use cases}
+\subsection{Discover a new process}
+At some point, a Learner will want to learn about a new process from the Public
+Administration.  Once the Learner is logged onto the \learnpad Platform, he'll
+see a list of the available processes on his dashboard.  He'll be able to
+navigate through the process, going forward and backward in the series of
+activities of the process and all of the contextual information linked to this
+process.
+
+\paragraph{Behind the scene}
+The models are imported into the Collaborative Workspace component
+[\ref{sec:collaborative-workspace}] which is wiki-based.  When the \learnpad
+Core Platform is pushing models towards the Collaborative Workspace component
+[\ref{sec:collaborative-workspace}], the models are transformed into wiki pages
+by a Transformations component [\ref{sec:transformations}]: each element of the
+model is becoming a structured wiki page.  Once the models have been imported
+into the Collaborative Workspace component [\ref{sec:collaborative-workspace}],
+the Learner can navigate through the models directly in the wiki.
+
+\subsection{Getting recommendations}
+In order to improve the learning experience of the Learner, the wiki will also
+display recommendations to the Learner as he browses through the models in the
+wiki.  Recommendations could be about people to get help from, existing example
+that could help to understand the process, multimedia materials, etc.
+
+\paragraph{Behind the scene}
+In the \learnpad Platform, the Ontology Recommender component
+[\ref{sec:ontology-recommender}] is able to give recommendations based on
+contextual information from the browsing of the Learner.  For example,
+information about who he is and what he's looking at could be used to suggest
+colleagues that may help him on this particular activity of the learned process.
+In order to infer recommendations from the contextual informations, Ontology
+Recommender component [\ref{sec:ontology-recommender}] is transforming models
+into an ontology through a Transformations component
+[\ref{sec:transformations}].
+
+\subsection{Collaborate to the documentation}
+At some point, the Learner will get experience on the process and may point out
+the weaknesses of the documentation.  Looking at a particular activity in the
+process, he'd like to complete with some pertinent information.  He can create a
+new document which will be linked to this specific activity of the process, and
+write, based on his experience, new content that could help other Learners.
+Note that everybody is able to collaborate so the documentation of the \learnpad
+Platform is not only tight to the Modeler but also to the collaboration of every
+Civil Servant in the Public Administration.
+
+\paragraph{Behind the scene}
+In the Collaborative Workspace component [\ref{sec:collaborative-workspace}],
+each wiki page will display a possibility to create a collaborative content
+attached to this page.  The collaborative content will create a new wiki page
+that will be editable by any Civil Servant willing to improve the documentation.
+
+\subsection{Reviewing collaborative content}
+Collaborative contents give the ability to Civil Servants to cooperate in the
+improvement of the documentation of the processes.  \learnpad Platform will
+execute automatic text verifications in order to improve the quality of the
+produces content.  The results of these executions will be shown to an
+experienced Civil Servant who may improve the collaborative content accordingly
+or reject the propositions.
+
+\paragraph{Behind the scene}
+\learnpad Platform provides a Content Analysis component
+[\ref{sec:content-analysis}] which is able to run semantic analysis on the
+textual content and detects text vagueness.  A specific Graphical User Interface
+provide a review workflow inside the wiki, only available to Civil Servant
+experienced on the given process.
+
+\subsection{Formulate a feedback to Modelers}\label{sse:FormulateFeedbackToModeler}
+Even if Learners can improve documentation with these collaborative content (see
+previous section), it's also possible they think there is a mistake in the model
+and would like to contact the Modeler in order to fix it.  Like collaborative
+content, each wiki page is providing the functionality to write a feedback
+directly to the Modeler.  Usually, these functionality will be restricted to any
+experienced Civil Servant on the concerned process.
+
+\paragraph{Behind the scene}
+Based on the role of the user, his experience of the process, he will or not be
+able to propose a feedback to Modelers.  When the Modeler will start his
+modeling tool, the Modeling Environment component
+[\ref{sec:modeling-environment}] will ask \learnpad Core Platform about any new
+feedback to display to the Modeler.
+
+\subsection{Simulate a process}
+\learnpad Platform provides a way to run a process which is very efficient way
+to learn.  The Learner will be teached by simulating a process with simulated
+data; he'll be able to execute the activities of the process, do his own
+mistakes.
+
+\paragraph{Behind the scene}
+From the Collaborative Workspace component [\ref{sec:collaborative-workspace}],
+the Learner will be able to access a simulation of the process.  The process is
+simulated by the Simulation Environment component
+[\ref{sec:simulation-environment}], which provides its own Graphical User
+Interface embedded into the wiki.  The Simulation Environment component
+[\ref{sec:simulation-environment}] uses documents and data in order to execute a
+full process.  During the simulation, two things are happening:
 \begin{itemize}
-	\item A set of models which are woven together\footnote{Business Process
-		Models, Case Management Models and Notations, Document and Knowledge
-		Models, Organization Models, Competency Models, Business Motivation
-		Models, KPI Models}
-	\item Clickable images of the models (images and maps of clickable areas)
+	\item the context of the simulation (who, what is currently simulated, what
+		are the data, etc.) is sent to the Ontology Recommender component
+		[\ref{sec:ontology-recommender}] in order to provide real-time
+		recommendations to the Leaner during the simulation
+	\item the Learner will be monitored during the simulation (time of
+		achievement, number of successes and errors, etc.) by the Monitoring
+		Component which is part of the Simulation Environment component
+		[\ref{sec:simulation-environment}]
 \end{itemize}
 
-\subsection{Model Verification}
-\label{sec:model-verification}
-
-\paragraph{Technology}
-PetriNET
-
-\paragraph{Description}
-Before importing the models, the \learnpad platform will run a list of
-verifications on the models.  These are formal verifications to avoid
-importation of models that are not executable or that contains activities that
-are not reachable (these are only 2 examples).
-
-\subsection{Transformations}
-\label{sec:transformations}
-
-\paragraph{Technology}
-EMF, ATL, Acceleo, XSL-T
-
-\paragraph{Description}
-Once the model has been validated, it can be imported into the \learnpad
-platform.  3 components will need these models for different purposes.
-
-First of all, the Collaborative Workspace component will display these models
-into a wiki for the Civil Servants.  These transformations are done using
-Modeling Transformations tools like EMF (to represent models), ATL (to convert
-models) and Acceleo (to serialize EMF representations of models).
-
-On the second hand, the Ontology Recommender component has to build an ontology
-of the models in order to propose recommendations.  The transformations
-technology used here is XML-specific: XSL-Transformations.
-
-Finally, the Simulation Environment component will simulate Business Process.
-It's using the Activiti Engine which is able to run simulation on Business
-Process serialized as BPMN standard format.
-
-\subsection{Collaborative Workspace}
-\label{sec:collaborative-workspace}
-
-\paragraph{Technology}
-Wiki
-
-\paragraph{Description}
-The Collaborative Workspace component is the User Interface entry point for
-Civil Servants.  It's in the Collaborative Workspace component they will
-consult, browse, learn about new or existing processes.
-
-Civil Servants are able to collaborate into this workspace by providing
-additionnal documentation, help to fix inconsistent, incomplete or wrong models
-
-\subsection{Ontology Recommender}
-\label{sec:ontology-recommender}
-
-\paragraph{Technology}
-ArchiMate, ArchiMEO, RDF
-
-\paragraph{Description}
-The Ontology Recommender component will create an ontology based on the models
-that are pushed to him.  This ontology will produce different kind of
-recommendations to the Civil Servant as they browse the wiki and use the
-simulation (see Section~\ref{sec:simulator}:
-\begin{itemize}
-	\item \emph{Experts} they could talk to to get more details on the activity
-	\item \emph{Similar Cases} which are similar processes to the one currently
-		consulted or simulated
-	\item \emph{Learning Materials} which are related
-		multimedias that can help to understand the activity
-\end{itemize}
-
-\subsection{Simulation Environment}
-\label{sec:simulator}
-
-\paragraph{Technology}
-Activiti, BPMN
-
-\paragraph{Description}
-On the Simulation Environment component, Civil Servants will be able to
-interactively simulate a process, playing each activity and validate each step.
-It's a learning tool so the Simulation Environment component will give feedback
-about the expected values.  Multiple Civil Servants may interact on a common
-simulation too.  In any case, gamification mechanisms will keep this exercise
-motivating for Civil Servants.
-
-\subsection{Content Analysis}
-\label{sec:content-analysis}
-
-\paragraph{Technology}
-Gate
-
-\paragraph{Description}
-In the Collaborative Workspace component, the Civil Servants will be able to
-co-edit new documents that will improve the processes' documentation.  These
-documents will be beneficial for every other Civil Servant.  Therefore, Content
-Analysis component is in charge of keeping a minimum level of quality for these
-documents.  It will run semantic analysis on the produced documents in order to
-spot vagueness or incomplete information in the contents.
-
-\section{Component view}
-\label{sec:component-view}
-The component view will show which are the real existing components and how they
-are connected to each other into the \learnpad platform (see
-Figure~\ref{fig:component-view}).
+\chapter{\learnpad platform: solutions and technologies}
+\label{ch:platform}
+In the previous section, we explained what were the functionalities of the
+\learnpad Platform and how the users were interacting with it.  A lot of
+different components are implied in these processes.  This section will present
+the different components of the \learnpad platform.  This component view will
+show which are the implemented components and how they are connected to each
+other into the \learnpad platform (see Figure~\ref{fig:component-view}).
 
 \begin{figure}[!htp]
 	\centering
@@ -379,7 +448,8 @@ Figure~\ref{fig:component-view}).
 	\label{fig:component-view}
 \end{figure}
 
-\subsection{Learn PAd Core}
+\section{Learn PAd Core}\label{sec:core}
+\paragraph{Description}
 \learnpad platform has been designed as modular as possible.  Everything is
 plugged onto this \learnpad Core component.  In order to be independent as much
 as possible from the technologies used in each component, each component is
@@ -389,7 +459,21 @@ This component is developed inside the XWiki software.  This means that storage
 is shared with all components that are part of XWiki.  However, it communicates
 with all the components with REST which make it a replaceable component.
 
-\subsection{Modeling Environment}
+\paragraph{Provided services}
+\begin{itemize}
+	\item Orchestrator for inter-component communications
+	\item Storage system for the \learnpad Platform\footnote{Note that each component may also have its own storage system.}
+\end{itemize}
+
+\paragraph{Technologies}
+\begin{description}
+	\item[Jax-RS] Framework to implement REST services
+	\item[Jax-B] Framework to serialize Java class to XML
+	\item[Component Manager] XWiki library for a component-oriented architecture
+\end{description}
+
+\section{Modeling Environment}\label{sec:modeling-environment}
+\paragraph{Description}
 Modeling Environment component is a specific component.  It's used for modeling
 but once used, it can be shutdown.  However, the \learnpad Core component is
 assumed to be always online.  Therefore, communication between these two
@@ -405,37 +489,81 @@ platform is a ZIP archive (files \verb+*.lpzip+) which contains:
 	\item Business Process models [format:BPMN 2.0]
 \end{itemize}
 
-\subsection{Collaborative Workspace}
-The Collaborative Workspace is divided into 2 main components.  Since the
+\paragraph{Provided services}
+\begin{itemize}
+	\item TO BE DONE
+\end{itemize}
+
+\paragraph{Technologies}
+\begin{description}
+	\item[NoTech] TO BE DONE
+\end{description}
+
+\section{Collaborative Workspace}\label{sec:collaborative-workspace}
+\paragraph{Description}
+The Collaborative Workspace is divided into two main components.  Since the
 \learnpad Core component is not doing any transformation on the files (\learnpad
 Core component is more like a router), the Collaborative Workspace component is
 getting raw files.  Therefore, the Wiki component is downloading the raw files
-from the \learnpad Core component, then use an EMF Transformation component to
-transform models into wiki pages.
+from the \learnpad Core component, then use an EMF Transformation component (see
+Section~\ref{sec:transformations}) to transform models into wiki pages.
 
-\subsubsection{Wiki}
 The Wiki component is the most important part of the Collaborative Workspace
-component.  It's the Graphical User Interface for Civil Servants where models
-will be displayed.  It contains modeling data, stored with a generic format, and
-an application capable of displaying these datas.
+component.  The Graphical User Interface will display models.  Wiki component
+will download models, ask for transformation, and import the resulting wiki
+pages from the transformation.
 
-Wiki component will get models, ask for transformation, and import the resulting
-wiki pages from the transformation.
+\paragraph{Provided services}
+\begin{itemize}
+	\item Graphical User Interface for Civil Servants
+	\item Embedding simulation in the Graphical User Interface
+	\item Provide widget for recommendations to the Civil Servants
+\end{itemize}
 
-\subsubsection{EMF Transformation}
-This transformation module is using EMF technologies to operate transformations
-on models.  Each meta-model (Adoxx, MagicDraw, XWiki) is represented as an Ecore
-module.  Then, a transformation language, ATL, transform them from an Ecore A
-(Adoxx or MagicDraw) to an Ecore B (XWiki).  Finally, Acceleo is serializing the
-Ecore to wiki pages which are sent to the Wiki component.
+\paragraph{Technologies}
+\begin{description}
+	\item[Velocity/Groovy] Scripting languages for server-side rendering in the wiki
+	\item[Javascript/CSS] Web technologies for interactive applications in the wiki
+\end{description}
 
-\subsection{Ontology Recommender}
+\section{Transformations}\label{sec:transformations}
+\paragraph{Description}
+The models respectively, produced by the ADOxx, and Magic Draw Modelling
+Environment are transformed to the corresponding Wiki pages by means of
+techniques and tools provided by the Eclipse Modeling Framework (EMF). Such
+models, describe the same business process, and are not directly comparable due
+to the different standard representation. In order to normalize the artifacts,
+UDA developed a transformational architecture which provide an Ecore
+representation for them and bridge the abstraction distance between the Learn
+Pad models and the wiki structures. The architecture performs several
+operations, among them:
+\begin{itemize}
+	\item a model-to-model transformation
+	\item a model-to-code transformation in order to produce the XWiki structure
+		which are sent to the Wiki component.
+\end{itemize}
+
+\paragraph{Provided services}
+\begin{itemize}
+	\item Pre-processing of models for preparation to EMF parsing
+	\item Transformation of models from one meta-model to another one
+	\item Serialization of model
+\end{itemize}
+
+\paragraph{Technologies}
+\begin{description}
+	\item[EMF (Eclipse Modeling Framework)] is a modeling framework and code generation facility for building tools and other applications based on a structured data model
+	\item[ATL (Atlas Transformation Language)] is a model-to-model transformation engine where a source model is translated into a target model Mb according to a transformation definition
+	\item[Acceleo] is a model-to-code transformation engine that produce the code according to a template-based rules
+\end{description}
+
+\section{Ontology Recommender}\label{sec:ontology-recommender}
+\paragraph{Description}
 For the same reasons than the Collaborative Workspace component, the Ontology
 Recommender component is getting raw files from \learnpad Core.  Therefore, the
 Recommender component is getting these files, sending them to the XSL-T
 Transformations component which return back ontologies of the models.
 
-\subsubsection{Recommender}
 The Recommender component is using an ontology to organize the information of
 the models.  The ontology is expressed as a RDF format.  This component will be
 able to make recommendations to a Civil Servants as he browses a model or play a
@@ -448,12 +576,22 @@ recommendations, for example:
 		Servant?
 \end{itemize}
 
-\subsubsection{XSL-T Transformations}
 This component is transforming models into ontologies.  The technology used is
 XML specific, and very efficient at parsing XML files to transform them into
 other serialization, RDF ontologies in this case.
 
-\subsection{Simulation Environment}
+\paragraph{Provided services}
+\begin{itemize}
+	\item TO BE DONE
+\end{itemize}
+
+\paragraph{Technologies}
+\begin{description}
+	\item[NoTech] TO BE DONE
+\end{description}
+
+\section{Simulation Environment}\label{sec:simulation-environment}
+\paragraph{Description}
 The Simulation Environment component is using Activiti Engine to play
 simulations of Business Processes.  Activiti Engine is using BPMN 2.0 format
 which was sent by the Modeling Environment component and stored in the \learnpad
@@ -468,31 +606,76 @@ reasons:
 		already exists in the Wiki)
 \end{itemize}
 
-\subsection{Model Verification}
+\paragraph{Provided services}
+\begin{itemize}
+	\item TO BE DONE
+\end{itemize}
+
+\paragraph{Technologies}
+\begin{description}
+	\item[NoTech] TO BE DONE
+\end{description}
+
+\section{Model Verification}\label{sec:model-verification}
+\paragraph{Description}
 The Model Verification component is in charge of verifying consistency of
 models.  It runs multiple tests on models in order to identify different kind of
 errors.  The Modeling Environment component is able to ask \learnpad Core
 component for errors and report them to the modelers.
 
-\subsection{Content Analysis}
-The Content Analysis component runs semantic analysis on free text
-collaboratively created by Civil Servants in the Wiki component.  It returns
-annotations on the text with the following information:
+\paragraph{Provided services}
 \begin{itemize}
-	\item Start and End of the piece of concerned text
-	\item The type of error (among a list of categories)
+	\item TO BE DONE
 \end{itemize}
 
-The annotations are then displayed in the Wiki component, providing a workflow
-to a Civil Servant for a throrough review of each of these.
+\paragraph{Technologies}
+\begin{description}
+	\item[NoTech] TO BE DONE
+\end{description}
+
+\section{Content Analysis}\label{sec:content-analysis}
+\paragraph{Description}
+The Content Analysis component is a Web application with a REst interface, to
+analise natural language content according to six quality criteria (Correctness,
+Presentation Clarity, Completeness, Simplicity, Non Ambiguity and Content
+Clarity). Given a text, produced by civil servants and content managers, the
+component checks for language defects and, for each defect, returns the
+defective part of the text, together with a suggestion for improvement.
+
+\paragraph{Provided services}
+\begin{itemize}
+	\item Detection of textual defects concerning Correctness, Presentation Clarity, Completeness, Simplicity, Non Ambiguity and Content Clarity
+	\item Suggestion for defects removal
+\end{itemize}
+
+\paragraph{Technologies}
+\begin{description}
+	\item[LanguageTool] a class library used to check the Correctness of a sentence, in terms of grammar.
+	\item[GATE] a class library implemented in Java for processing natural language. It is used to check Simplicity, Non Ambiguity and Content Clarity.
+	\item[JSOUP] a Java library for working with HTML. It is used to parse HTML Content for the Presentation Clarity and Completeness.
+\end{description}
 
 \chapter{About partners}
 \label{ch:partners}
 
 \section{Consiglio Nazionale delle Ricerche}
-Leading partner of the \learnpad project, CNR is an Italian Public Research
-Institute.  It's the expert in automatic semantic analysis (for the Content
-Analysis component).
+Leading partner of the Learn PAd project, CNR is an Italian Public Research
+Institute.  Learn PAd is carried out by Software Engineering and Dependable
+Computing (SEDC) and Formal Methods and Tools (FMT) laboratories, that provide
+the Content Analysis and Model Verification components, as well as monitoring
+for simulation.
+
+\paragraph{Competencies}
+\begin{itemize}
+	\item Identification of defects in natural language text
+	\item Formal verification of business processes
+	\item Monitoring of business processes and learning assessment
+\end{itemize}
+
+\paragraph{Contact}
+\begin{description}
+	\item[Stefania Gnesi] \href{mailto:stefania.gnesi@isti.cnr.it}{stefania.gnesi@isti.cnr.it} or +39 050 621 2918
+\end{description}
 
 \begin{figure}[!htp]
 	\centering
@@ -500,9 +683,31 @@ Analysis component).
 	\url{http://www.cnr.it}
 \end{figure}
 
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/fmt.png}\par
+	\url{http://fmt.isti.cnr.it/doku.php}
+\end{figure}
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=6em,keepaspectratio]{figures/isti.png}\par
+	\url{http://www.isti.cnr.it/}
+\end{figure}
+
 \section{BOC Asset Management GmbH}
 Based in Austria, it's a leading company in Modeling.  It's providing the
 software Adoxx for the Modeling Environment component.
+
+\paragraph{Competencies}
+\begin{itemize}
+	\item TO BE DONE
+\end{itemize}
+
+\paragraph{Contact}
+\begin{description}
+	\item[TO BE DONE] \href{mailto:TO@BE.DONE}{TO@BE.DONE} or PHONE
+\end{description}
 
 \begin{figure}[!htp]
 	\centering
@@ -514,6 +719,16 @@ software Adoxx for the Modeling Environment component.
 Linagora is an open-source company, based in France.  It's providing
 technologies and knowledge about execution and simulation of Business Processes.
 
+\paragraph{Competencies}
+\begin{itemize}
+	\item TO BE DONE
+\end{itemize}
+
+\paragraph{Contact}
+\begin{description}
+	\item[TO BE DONE] \href{mailto:TO@BE.DONE}{TO@BE.DONE} or PHONE
+\end{description}
+
 \begin{figure}[!htp]
 	\centering
 	\includegraphics[width=6em,keepaspectratio]{figures/linagora.png}\par
@@ -523,6 +738,16 @@ technologies and knowledge about execution and simulation of Business Processes.
 \section{No Magic Europe UAB}
 Based in Lithuania, it's a leading company in Modeling.  It's providing the
 software MagicDraw for the Modeling Environment component.
+
+\paragraph{Competencies}
+\begin{itemize}
+	\item TO BE DONE
+\end{itemize}
+
+\paragraph{Contact}
+\begin{description}
+	\item[TO BE DONE] \href{mailto:TO@BE.DONE}{TO@BE.DONE} or PHONE
+\end{description}
 
 \begin{figure}[!htp]
 	\centering
@@ -544,6 +769,16 @@ processes in Public Administration.
 Swiss University with expertise on ontologies.  It's working on the
 recommendation engine.
 
+\paragraph{Competencies}
+\begin{itemize}
+	\item TO BE DONE
+\end{itemize}
+
+\paragraph{Contact}
+\begin{description}
+	\item[TO BE DONE] \href{mailto:TO@BE.DONE}{TO@BE.DONE} or PHONE
+\end{description}
+
 \begin{figure}[!htp]
 	\centering
 	\includegraphics[width=6em,keepaspectratio]{figures/fhnw.jpg}\par
@@ -554,6 +789,16 @@ recommendation engine.
 This Italian University is having expertise in Business Process.  It's working
 on formal verification of processes.
 
+\paragraph{Competencies}
+\begin{itemize}
+	\item TO BE DONE
+\end{itemize}
+
+\paragraph{Contact}
+\begin{description}
+	\item[TO BE DONE] \href{mailto:TO@BE.DONE}{TO@BE.DONE} or PHONE
+\end{description}
+
 \begin{figure}[!htp]
 	\centering
 	\includegraphics[width=6em,keepaspectratio]{figures/unicam.png}\par
@@ -561,20 +806,50 @@ on formal verification of processes.
 \end{figure}
 
 \section{Università degli Studi dell'Aquila}
-This Italian University is having expertise in models (transformations,
-comparisons, historic, etc.) and in the related technologies (EMF, ATL, Acceleo,
-EMFCompare, etc.).
+The University of L’Aquila (UDA) has developed a solid research and experience
+in the model-driven area (software engineering) on the metamodeling field, model
+manipulation and analysis.  UDA concentrates his research in the specification
+of transformations and their application to several problem domains: web
+engineering, software architectures and middleware-based communication systems.
+
+\paragraph{Competencies}
+\begin{itemize}
+	\item metamodeling and general model management
+	\item the definition and instantiation of the Learn PAd metamodel that
+		permits the specification of extended business processes in the domain
+		of Public Administrations
+	\item a transformational architecture where models produced in the different
+		modeling environments are processed in order to generate the wiki
+		structures associated to the business processes
+	\item the adoption of state-of-the-art tecniques and tools for designing and
+		implementing model-to-model transformations
+	\item the adoption of state-of-the-art tecniques and tools for designing and
+		implementing model-to-code transformations
+\end{itemize}
+
+\paragraph{Contact}
+\begin{description}
+	\item[Alfonso Pierantonio] \href{mailto:alfonso.pierantonio@univaq.it}{alfonso.pierantonio@univaq.it} or +39 3283332668
+	\item[Francesco Basciani] \href{mailto:francesco.basciani@graduate.univaq.it}{francesco.basciani@graduate.univaq.it} or +39 3336777151
+	\item[Gianni Rosa] \href{mailto:gianni.rosa@univaq.it}{gianni.rosa@univaq.it} or +39 3803288267
+\end{description}
 
 \begin{figure}[!htp]
 	\centering
 	\includegraphics[width=6em,keepaspectratio]{figures/univaq.png}\par
-	\url{http://www.univaq.it}
+	\url{http://www.disim.univaq.it/main/index.php}
 \end{figure}
 
 \section{XWiki SAS}
 French open-source company, which is developing XWiki software.  It's providing
 XWiki as the base of the \learnpad platform and expertise about collaboration
 and knowledge management.
+
+\paragraph{Contact}
+\begin{description}
+	\item[Jean Simard] \href{mailto:simard.jean@xwiki.com}{simard.jean@xwiki.com}
+	\item[Caleb Delisle] \href{mailto:calebjamesdelisle@xwiki.com}{calebjamesdelisle@xwiki.com}
+\end{description}
 
 \begin{figure}[!htp]
 	\centering
