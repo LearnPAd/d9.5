@@ -57,7 +57,7 @@ Jean Simard (XWIKI)
 \disseminationlevelpublic
 % \disseminationlevelconfidential
 %%% ------------------------------------------------------
-\version{2.3}%
+\version{2.4}%
 \contractualdeliverydate{24 January 2016}%
 \actualdeliverydate{24 January 2016}%
 \contributingwp{WP9}%
@@ -84,7 +84,7 @@ to orchestrate these use cases.}
 %%% ------------------------------------------------------
 \reviewoutline{2 Dec. 2015}{0.2}{}{}
 \reviewdraft{27 Dec. 2015}{1.2}{}{}
-\reviewinternal{10 Jan. 2016}{2.2}{Andrea Polini, Antonia Bertolino}{}
+\reviewinternal{10 Jan. 2016}{2.4}{Andrea Polini, Antonia Bertolino}{}
 \reviewcandidatefinal{24 Jan. 2016}{3.0}{Antonia Bertolino}{}
 
 \begin{document}
@@ -97,7 +97,7 @@ to orchestrate these use cases.}
 %% ------------------------------------------------------
 \begin{history}
   \historyitem{0.1}{ToC}{Jean Simard}
-  \historyitem{0.2}{ToC}{Jean Simard}
+  \historyitem{0.2}{ToC}{Benjamin Lanciaux, Jean Simard}
   \historyitem{1.0}{Write the Introduction}{Jean Simard}
   \historyitem{1.1}{Add Flow view and Component View}{Jean Simard}
   \historyitem{1.2}{Remove sections}{Jean Simard}
@@ -105,6 +105,7 @@ to orchestrate these use cases.}
   \historyitem{2.1}{Improve after a review from NME}{Jovaldas Januškevičius, Jean Simard}
   \historyitem{2.2}{Add graphics}{Jean Simard}
   \historyitem{2.3}{Improve with contributions}{Francesco Basciani, Antonello Calabrò, Alessio Ferrari, Francesca Lonetti, Alfonso Pierantonio, Andrea Polini, Gianni Rosa, Darius Šilingas, Jean Simard}
+  \historyitem{2.4}{Improve with contributions from LINAGORA}{Tom Jorquera, Jean Simard, Sarah Zribi}
 \end{history}
 
 %%% ------------------------------------------------------
@@ -467,9 +468,11 @@ with all the components with REST which make it a replaceable component.
 
 \paragraph{Technologies}
 \begin{description}
-	\item[Jax-RS] Framework to implement REST services
+	\item[Java] for platform server development
+	\item[Jax-RS/Restlet] Framework to implement REST services
 	\item[Jax-B] Framework to serialize Java class to XML
 	\item[Component Manager] XWiki library for a component-oriented architecture
+	\item[Jetty] Platform webserver
 \end{description}
 
 \section{Modeling Environment}\label{sec:modeling-environment}
@@ -523,7 +526,9 @@ pages from the transformation.
 \paragraph{Technologies}
 \begin{description}
 	\item[Velocity/Groovy] Scripting languages for server-side rendering in the wiki
-	\item[Javascript/CSS] Web technologies for interactive applications in the wiki
+	\item[HTML5] Web technologies for interactive applications in the wiki
+	\item[Bootstrap] for client-side web interface design
+	\item[Java] for platform server development
 \end{description}
 
 \section{Transformations}\label{sec:transformations}
@@ -592,28 +597,37 @@ other serialization, RDF ontologies in this case.
 
 \section{Simulation Environment}\label{sec:simulation-environment}
 \paragraph{Description}
-The Simulation Environment component is using Activiti Engine to play
-simulations of Business Processes.  Activiti Engine is using BPMN 2.0 format
-which was sent by the Modeling Environment component and stored in the \learnpad
-Core.
-
-The Simulation Environment component is also generating Graphical User Interface
-for the Civil Servant.  However, this GUI are embedded inside the Wiki for 2
-reasons:
-\begin{itemize}
-	\item Reduce the number of entry points for the Civil Servants
-	\item Display recommendations during the simulation (UI for recommendation
-		already exists in the Wiki)
-\end{itemize}
+The simulation framework provides the subsystem where learners can simulate
+Business Processes interactively and is used by one or multiple civil servant(s)
+in order to learn processes. It proposes a simulation platform providing a
+flexible and interoperable simulation environment with support for
+collaboration. The simulation engine supports both the software emulation of the
+involved parties, and the provisioning of dedicated means for gathering learners
+willing to train on the business process by interacting with other learners. The
+infrastructure also includes monitoring feature providing feedbacks for the
+evaluation of learners, business processes, and associated learning contents.
 
 \paragraph{Provided services}
 \begin{itemize}
-	\item TO BE DONE
+	\item BPMN process simulation session management, in single-user, collaborative, or mixed modes
+	\item graphical interface for interacting with a simulation session
+	\item Automated tasks verification and validation
+	\item Simulation sessions dynamic monitoring via events notifications
 \end{itemize}
 
 \paragraph{Technologies}
 \begin{description}
-	\item[NoTech] TO BE DONE
+	\item[Java] for simulator server development
+	\item[Junit] for automated testing
+	\item[Activiti engine] for BPMN execution
+	\item[Jetty] for simulator webserver
+	\item[Resteasy] for REST API creation and consumption
+	\item[Jackson] for object/json conversion between client and server
+	\item[HTML5] for client-side web interface
+	\item[Bootstrap] for client-side web interface design
+	\item[JSON form] for client-side form generation
+	\item[Glimpse] for monitoring messages processing
+	\item[ActiveMQ] for monitoring messages dispatch
 \end{description}
 
 \section{Model Verification}\label{sec:model-verification}
@@ -716,17 +730,23 @@ software Adoxx for the Modeling Environment component.
 \end{figure}
 
 \section{Linagora Grand Sud Ouest SA}
-Linagora is an open-source company, based in France.  It's providing
-technologies and knowledge about execution and simulation of Business Processes.
+LINAGORA is a French leading company in Open Source Software and a Professional
+Services Provider. Its novice support solution (OSSA, Open Source Software
+Assurance) is a unique solution on a French market that provides a full line of
+services available through our one-stop shop in order to secure the FLOSS
+oriented information systems.
 
 \paragraph{Competencies}
 \begin{itemize}
-	\item TO BE DONE
+	\item Research projects management
+	\item Distributed and collaborative systems
+	\item Business process related technologies
+	\item Open Source projects management and dissemination
 \end{itemize}
 
 \paragraph{Contact}
 \begin{description}
-	\item[TO BE DONE] \href{mailto:TO@BE.DONE}{TO@BE.DONE} or PHONE
+	\item[Jean-Pierre Lorré] \href{mailto:jplorre@linagora.com}{jplorre@linagora.com} or + 33 688 346 385
 \end{description}
 
 \begin{figure}[!htp]
@@ -844,6 +864,14 @@ engineering, software architectures and middleware-based communication systems.
 French open-source company, which is developing XWiki software.  It's providing
 XWiki as the base of the \learnpad platform and expertise about collaboration
 and knowledge management.
+
+\paragraph{Competencies}
+\begin{itemize}
+	\item Expert on XWiki software used as basis for \learnpad Platform
+	\item Specialized in Collaborative Workspaces and Knowledge-Base Wikis
+	\item Software development and integration
+	\item Open-source software and community management
+\end{itemize}
 
 \paragraph{Contact}
 \begin{description}
