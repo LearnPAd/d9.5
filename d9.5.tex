@@ -12,7 +12,7 @@
 %%% ------------------------------------------------------
 %%% ---------------- The Title
 %%% ------------------------------------------------------
-\title{Technology-oriented Learn PAd whitepaper}
+\title{Technology-oriented \learnpad whitepaper}
 
 %%% ------------------------------------------------------
 %%% ---------------- The Sub-Title
@@ -57,7 +57,7 @@ Jean Simard (XWIKI)
 \disseminationlevelpublic
 % \disseminationlevelconfidential
 %%% ------------------------------------------------------
-\version{2.4}%
+\version{2.5}%
 \contractualdeliverydate{24 January 2016}%
 \actualdeliverydate{24 January 2016}%
 \contributingwp{WP9}%
@@ -84,7 +84,7 @@ to orchestrate these use cases.}
 %%% ------------------------------------------------------
 \reviewoutline{2 Dec. 2015}{0.2}{}{}
 \reviewdraft{27 Dec. 2015}{1.2}{}{}
-\reviewinternal{10 Jan. 2016}{2.4}{Andrea Polini, Antonia Bertolino}{}
+\reviewinternal{10 Jan. 2016}{2.5}{Andrea Polini, Antonia Bertolino}{}
 \reviewcandidatefinal{24 Jan. 2016}{3.0}{Antonia Bertolino}{}
 
 \begin{document}
@@ -106,6 +106,7 @@ to orchestrate these use cases.}
   \historyitem{2.2}{Add graphics}{Jean Simard}
   \historyitem{2.3}{Improve with contributions}{Francesco Basciani, Antonello Calabrò, Alessio Ferrari, Francesca Lonetti, Alfonso Pierantonio, Andrea Polini, Gianni Rosa, Darius Šilingas, Jean Simard}
   \historyitem{2.4}{Improve with contributions from LINAGORA}{Tom Jorquera, Jean Simard, Sarah Zribi}
+  \historyitem{2.5}{Improve with contributions from NME, FHNW}{Jovaldas Januškevičius, Andrea Polini, Andrea Sergiacomi, Barbara Thönssen}
 \end{history}
 
 %%% ------------------------------------------------------
@@ -449,7 +450,7 @@ other into the \learnpad platform (see Figure~\ref{fig:component-view}).
 	\label{fig:component-view}
 \end{figure}
 
-\section{Learn PAd Core}\label{sec:core}
+\section{\learnpad Core}\label{sec:core}
 \paragraph{Description}
 \learnpad platform has been designed as modular as possible.  Everything is
 plugged onto this \learnpad Core component.  In order to be independent as much
@@ -564,35 +565,48 @@ operations, among them:
 
 \section{Ontology Recommender}\label{sec:ontology-recommender}
 \paragraph{Description}
-For the same reasons than the Collaborative Workspace component, the Ontology
-Recommender component is getting raw files from \learnpad Core.  Therefore, the
-Recommender component is getting these files, sending them to the XSL-T
-Transformations component which return back ontologies of the models.
-
-The Recommender component is using an ontology to organize the information of
-the models.  The ontology is expressed as a RDF format.  This component will be
-able to make recommendations to a Civil Servants as he browses a model or play a
-simulation.  Contextual information will be used to get the best possible
-recommendations, for example:
-\begin{itemize}
-	\item Who is the current Civil Servant?
-	\item What the Civil Servant is currently looking at?
-	\item In case of simulation, what are the data already entered by the Civil
-		Servant?
-\end{itemize}
-
-This component is transforming models into ontologies.  The technology used is
-XML specific, and very efficient at parsing XML files to transform them into
-other serialization, RDF ontologies in this case.
+The ontology recommender component provides a combined ontology representation
+of the \learnpad meta models, models and their relationship. All models from the
+modelling environments can be transformed into instances of the platform
+independent meta models (LPIMM) represented by specific ontologies for BPMN,
+BMM, KPI's etc. With rules the associations to the conceptual models (LCIMM) are
+inferred and recommendations of experts, learning objects and learning material
+are provided in a context-sensitive and personalized manner. The integrated case
+based reasoning (CBR) component suggests similar cases to learn from past
+experiences.
 
 \paragraph{Provided services}
 \begin{itemize}
-	\item TO BE DONE
+	\item Modelset transformations: A new set of models from the modelling
+		environment is transformed and stored in the ontology as instances
+	\item Context based expert recommendations (ex. performers most often
+		executed a task, officers with same role in another organisation unit,
+		etc.)
+	\item Recommendation of learning material supporting learner to reach next
+		level of competency (derived from learners acquired competencies and the
+		required competencies given by the role or organisational targets)
+	\item Retrieval of past cases and  knowledge (experiences) to learn how to
+		treat a similar new case
 \end{itemize}
 
 \paragraph{Technologies}
 \begin{description}
-	\item[NoTech] TO BE DONE
+	\item[RDF/RDFS/OWL] Ontology languages used to model and represent knowledge
+		of
+		\learnpad\footnote{\url{https://www.w3.org/TR/2004/REC-owl-ref-20040210/}}
+	\item[SPARQL] W3C recommendation and query language for RDF applied to query
+		the ontology for
+		recommendations\footnote{\url{http://www.w3.org/TR/rdf-sparql-query/}}
+	\item[SPIN] Inferencing rules language based on SPARQL and applied to
+		inference associations from the imported models and the conceptual
+		enterprise model\footnote{\url{http://spinrdf.org/}}
+	\item[ArchiMEO] Extended enterprises ontology representing mainly the OMG
+		Archimate enterprise architecture plus additional enterprise concepts
+	\item[XSLT] Used to transform model set exports from XML into instances of
+		the platform independent meta
+		model\footnote{\url{https://www.w3.org/TR/xslt20/}}
+	\item[ICEBERG] An ontology based CBR component with an annotation based
+		configuration developed by the FHNW
 \end{description}
 
 \section{Simulation Environment}\label{sec:simulation-environment}
@@ -632,19 +646,29 @@ evaluation of learners, business processes, and associated learning contents.
 
 \section{Model Verification}\label{sec:model-verification}
 \paragraph{Description}
-The Model Verification component is in charge of verifying consistency of
-models.  It runs multiple tests on models in order to identify different kind of
-errors.  The Modeling Environment component is able to ask \learnpad Core
-component for errors and report them to the modelers.
+The Model Verification component is in charge of verifying correctness of models
+with respect to relevant structural properties such as deadlock and livelock.
+The components applying well studied reachability analysis algorithms permits to
+assess the models also with respect to model related properties. In particular
+the component includes a plug-in based architecture that permit to add new
+properties according to different model domains. The component in case a issue
+on the model is identified returns back a clear description of the problem to be
+presented to the modeler.
 
 \paragraph{Provided services}
 \begin{itemize}
-	\item TO BE DONE
+	\item Model verification service 
+	\item Verified properties extension
 \end{itemize}
 
 \paragraph{Technologies}
 \begin{description}
-	\item[NoTech] TO BE DONE
+	\item[JavaEE] platform as base programming framework.
+	\item[JAX-RS] technology used to define the REST service interfaces
+	\item[JAX-B] Framework in order to manage XML input/output of the services
+	\item[Grizzly] server used to deploy the services
+	\item[Apache] common exec framework in order to manage the execution of the external model checker LOLA
+	\item[LOLA] (Low Level PetriNet Analyser) model checker in order to perform formal verification of LTL/CTL properties over a petri net
 \end{description}
 
 \section{Content Analysis}\label{sec:content-analysis}
@@ -673,8 +697,8 @@ defective part of the text, together with a suggestion for improvement.
 \label{ch:partners}
 
 \section{Consiglio Nazionale delle Ricerche}
-Leading partner of the Learn PAd project, CNR is an Italian Public Research
-Institute.  Learn PAd is carried out by Software Engineering and Dependable
+Leading partner of the \learnpad project, CNR is an Italian Public Research
+Institute.  \learnpad is carried out by Software Engineering and Dependable
 Computing (SEDC) and Formal Methods and Tools (FMT) laboratories, that provide
 the Content Analysis and Model Verification components, as well as monitoring
 for simulation.
@@ -756,12 +780,22 @@ oriented information systems.
 \end{figure}
 
 \section{No Magic Europe UAB}
-Based in Lithuania, it's a leading company in Modeling.  It's providing the
-software MagicDraw for the Modeling Environment component.
+No Magic Europe is one of the leading software development companies in
+Lithuania.  No Magic is best known as the vendor of the popular UML-based
+modeling platform MagicDraw TM.  No Magic Europe provides custom software
+development services, professional training and consulting services focused on
+modeling languages and techniques. No Magic also plays a key role in Object
+Management Group consortium.
 
 \paragraph{Competencies}
 \begin{itemize}
-	\item TO BE DONE
+	\item Business Architecture and Design
+	\item Software Engineering
+	\item Application and Process Integration
+	\item Model-based Systems Engineering
+	\item Experience in industrial training, including e-learning offerings
+	\item Experts of OMG standards and modeling languages. Active roles in BPM
+		practitioner communities and OMG standardization working groups
 \end{itemize}
 
 \paragraph{Contact}
@@ -776,8 +810,39 @@ software MagicDraw for the Modeling Environment component.
 \end{figure}
 
 \section{Regione Marche}
-Italian Public Administration of the Marche region, it's providing expertise on
-processes in Public Administration.
+Marche Region is the institutional government of Marche Region, one of the 20
+Regions of Italy.  As a partner of the project which represents the public
+administration needs, we are experimenting the LearnPAD strategy and tools to
+enhance the organizational behaviours of the OSSs settled in our territory.
+
+\paragraph{Competencies}
+\begin{itemize}
+	\item a specific knowledge on the business processes related to the OSSs
+		(SUAP, in italian) and the experience of our local government bodies
+		coordination board about:
+		\begin{itemize}
+			\item standardization and simplification of forms and processes in
+				favour of SMEs
+			\item implementation of the Marche digital agenda and of calls for
+				funding for local authorities projects in order to increase
+				digital growth
+		\end{itemize}
+	\item a significant expertize of our PA School both in the management and
+		assessment of training activities as well as in organizing specific
+		courses (in elearning and in presence) for the OSSs
+	\item technical skills of our ICT department (eg systems, organizations and
+		workflows analysis; web and application development; accessibility and
+		usability of graphical User Interfaces; help desk and PC maintenance;
+		open source and fee software procurement management; installation and
+		maintenance of information systems, social and collaborative platforms,
+		web sites and content management systems; cloud data center, virtual and
+		phisical systems and networking management)
+\end{itemize}
+
+\paragraph{Contact}
+\begin{description}
+	\item[Andrea Sergiacomi] \href{mailto:andrea.sergiacomi@regione.marche.it}{andrea.sergiacomi@regione.marche.it} or +39 071 806 3504
+\end{description}
 
 \begin{figure}[!htp]
 	\centering
@@ -796,7 +861,8 @@ recommendation engine.
 
 \paragraph{Contact}
 \begin{description}
-	\item[TO BE DONE] \href{mailto:TO@BE.DONE}{TO@BE.DONE} or PHONE
+	\item[Sandro Emmenegger] \href{mailto:sandro.emmenegger@fhnw.ch}{sandro.emmenegger@fhnw.ch} or +41 62 957 25 08
+	\item[Barbara Thönssen] \href{mailto:barbara.thoenssen@fhnw.ch}{barbara.thoenssen@fhnw.ch} or +41 62 957 24 47
 \end{description}
 
 \begin{figure}[!htp]
@@ -806,17 +872,21 @@ recommendation engine.
 \end{figure}
 
 \section{Università degli Studi di Camerino}
-This Italian University is having expertise in Business Process.  It's working
-on formal verification of processes.
+University of Camerino is one of the oldest university in Italy, and is located
+in the Marche Region.  The Computer Science division of University of Camerino
+has developed a considerable experience in exploring the role of formal analysis
+in particular when applied to Business Process Models.
 
 \paragraph{Competencies}
 \begin{itemize}
-	\item TO BE DONE
+	\item Formal verification of BP models
+	\item Modelling expertise for PA processes
 \end{itemize}
 
 \paragraph{Contact}
 \begin{description}
-	\item[TO BE DONE] \href{mailto:TO@BE.DONE}{TO@BE.DONE} or PHONE
+	\item[Andrea Polini] \href{mailto:andrea.polini@unicam.it}{andrea.polini@unicam.it} or +39 0737 402563
+	\item[Barbara Re] \href{mailto:barbara.re@unicam.it}{barbara.re@unicam.it} or +39 0737 402524
 \end{description}
 
 \begin{figure}[!htp]
@@ -835,7 +905,7 @@ engineering, software architectures and middleware-based communication systems.
 \paragraph{Competencies}
 \begin{itemize}
 	\item metamodeling and general model management
-	\item the definition and instantiation of the Learn PAd metamodel that
+	\item the definition and instantiation of the \learnpad metamodel that
 		permits the specification of extended business processes in the domain
 		of Public Administrations
 	\item a transformational architecture where models produced in the different
